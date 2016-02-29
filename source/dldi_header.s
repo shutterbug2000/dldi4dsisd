@@ -29,7 +29,7 @@
 @---------------------------------------------------------------------------------
 @ Text identifier - can be anything up to 47 chars + terminating null -- 48 bytes
 	.align	4
-	.asciz "Name of driver goes here"
+	.asciz "DSI 3DS sd card"
 	
 @---------------------------------------------------------------------------------
 @ Offsets to important sections within the data	-- 32 bytes
@@ -45,7 +45,7 @@
 
 @---------------------------------------------------------------------------------
 @ IO_INTERFACE data -- 32 bytes
-	.ascii	"XXXX"			@ ioType
+	.ascii	"DSISD"			@ ioType
 	.word	FEATURE_MEDIUM_CANREAD | FEATURE_MEDIUM_CANWRITE | FEATURE_SLOT_NDS
 	.word	startup			@ 
 	.word	isInserted		@ 
