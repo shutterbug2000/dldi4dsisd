@@ -38,9 +38,9 @@ CFLAGS	+=	$(INCLUDE) -DARM7 -fPIC
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions
 
 ASFLAGS	:=	-g $(ARCH)
-LDFLAGS	=	-nostartfiles -nostdlib -T dldi.ld -g $(ARCH) -Wl,-Map,$(TARGET).map
+LDFLAGS	=	-nostartfiles -T ../dldi.ld -g $(ARCH) -Wl,-Map,$(TARGET).map
 
-LIBS	:= -lnds7
+LIBS	:= -lnds9 -lgcc
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
