@@ -22,25 +22,13 @@
  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-// When compiling for NDS, make sure NDS is defined
-#ifndef NDS
- #if defined ARM9 || defined ARM7
-  #define NDS
- #endif
-#endif
-
-#ifdef NDS
- #include <nds/ndstypes.h>
-#else
- #include "gba_types.h"
-#endif
-
 #define BYTES_PER_READ 512
 
 #ifndef NULL
  #define NULL 0
 #endif
 
+#include <nds/ndstypes.h>
 #include <nds/disc_io.h>
 #include <nds/fifocommon.h>
 #include <nds/fifomessages.h>
@@ -52,7 +40,6 @@ bool sdio_Startup() {
 	if (!REG_DSIMODE) return false;
 
 	fifoSendValue32(FIFO_SDMMC,SDMMC_HAVE_SD);
-	
 
 	while(!fifoCheckValue32(FIFO_SDMMC));
 
@@ -141,17 +128,6 @@ bool sdio_Shutdown() {
 	if (!REG_DSIMODE) return false;
 	return true;
 }
-
-const DISC_INTERFACE __io_dsisd = {
-	DEVICE_TYPE_DSI_SD,
-	FEATURE_MEDIUM_CANREAD | FEATURE_MEDIUM_CANWRITE,
-	(FN_MEDIUM_STARTUP)&sdio_Startup,
-	(FN_MEDIUM_ISINSERTED)&sdio_IsInserted,
-	(FN_MEDIUM_READSECTORS)&sdio_ReadSectors,
-	(FN_MEDIUM_WRITESECTORS)&sdio_WriteSectors,
-	(FN_MEDIUM_CLEARSTATUS)&sdio_ClearStatus,
-	(FN_MEDIUM_SHUTDOWN)&sdio_Shutdown
-};
 
 
 /*-----------------------------------------------------------------
