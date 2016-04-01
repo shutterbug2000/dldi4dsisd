@@ -45,7 +45,7 @@
 
 @---------------------------------------------------------------------------------
 @ IO_INTERFACE data -- 32 bytes
-	.ascii	"DSISD"			@ ioType
+	.ascii	"DSID"			@ ioType
 	.word	FEATURE_MEDIUM_CANREAD | FEATURE_MEDIUM_CANWRITE
 	.word	startup			@ 
 	.word	isInserted		@ 
